@@ -1,0 +1,8 @@
+Got command /master,chatId=-446181081,text="/master",user="Динара Гилязева"(776625534)
+Got command /start,chatId=-446181081,text="/start"
+Got command /master,chatId=-446181081,text="/master",user="Динара Гилязева"(776625534)
+New master is "Динара Гилязева"(776625534)
+Got command /show_word, chatId=-446181081, user="Динара Гилязева"(776625534),is_user_master=True,word=блин
+Guessing word,chadId=-446181081,user="Динара Гилязева"(776625534),is_master=True,text="Блин",word=""
+Guessing word,chadId=-446181081,user="Динара Гилязева"(776625534),is_master=True,text="Аоаоаддао",word=""
+Guessing word,chadId=-446181081,user="Динара Гилязева"(776625534),is_master=True,text="Клаооп",word=""
