@@ -3,17 +3,32 @@ import random
 import settings
 
 
+class User:
+    def __init__(self, user_id, username):
+        self.user_id: int = user_id
+        self.username: str = username
+        self.rating = 0
+
+    def update_rating(self):
+        self.rating += 1
+
+    def get_rating_str(self):
+        return self.username + ": " + str(self.rating) + " "
+
+
 class Game:
     def __init__(self):
         self._master_user_id = 0
         self._word_list = []
         self._current_word = ''
         self._game_started = False
+        self._users = {}
 
     def start(self):
         self._word_list = settings.word_list.copy()
         self._master_user_id = 0
         self._game_started = True
+        self._users = {}
 
     def is_game_started(self):
         return self._game_started
@@ -50,3 +65,16 @@ class Game:
 
     def get_current_word(self):
         return self._current_word
+
+    def update_rating(self, user_id, username):
+        if user_id not in self._users:
+            self._users[user_id] = User(user_id, username)
+
+        self._users[user_id].update_rating()
+
+    def get_str_rating(self):
+        rating_str = ''
+        for user_id in self._users:
+            rating_str += self._users[user_id].get_rating_str()
+
+        return rating_str
