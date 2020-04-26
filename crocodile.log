@@ -1,18 +1,1 @@
-Got command /start,chat_id=-446181081,text="/start"
-Got command /start,chat_id=-446181081,text="/start"
-Got command /start,chat_id=-446181081,text="/start"
-Got command /master,chat_id=-446181081,text="/master",user="Динара Гилязева"(776625534)
-chat_id=-446181081, New master is "Динара Гилязева"(776625534)
-Got command /show_word, chat_id=-446181081, user="Динара Гилязева"(776625534),is_user_master=True,word=блин
-chat_id=-446181081, New master is "Ayrat"(550645173)
-Guessing word,chad_id=-446181081,user="Ayrat"(550645173),is_master=True,text="Блин",word="блин"
-Got command /start,chat_id=-494170756,text="/start"
-Got command /master,chat_id=-494170756,text="/master",user="Динара Гилязева"(776625534)
-chat_id=-494170756, New master is "Динара Гилязева"(776625534)
-Got command /show_word, chat_id=-494170756, user="Динара Гилязева"(776625534),is_user_master=True,word=кошка
-chat_id=-494170756, New master is "Ayrat"(550645173)
-Guessing word,chad_id=-494170756,user="Ayrat"(550645173),is_master=True,text="Кошка",word="кошка"
-Got command /rating,chat_id=-494170756,rating=Ayrat: 1 
-Got command /master,chat_id=-446181081,text="/master",user="Динара Гилязева"(776625534)
-chat_id=-446181081, New master is "Динара Гилязева"(776625534)
-Got command /rating,chat_id=-446181081,rating=Ayrat: 1 
+Got command /start,chat_id=-446181081,user_id

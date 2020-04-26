@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 import random
+from datetime import datetime, timedelta
+
 import settings
+import time
 
 
 class User:
@@ -11,6 +14,9 @@ class User:
 
     def update_rating(self):
         self.rating += 1
+
+    def get_rating(self):
+        return self.rating
 
     def get_rating_str(self):
         return self.username + ": " + str(self.rating) + " "
@@ -23,6 +29,9 @@ class Game:
         self._current_word = ''
         self._game_started = False
         self._users = {}
+        self.winner = 0
+        self._master_start_time: datetime = datetime.now()
+        self.timedelta = 60
 
     def start(self):
         self._word_list = settings.word_list.copy()
@@ -33,9 +42,16 @@ class Game:
     def is_game_started(self):
         return self._game_started
 
+    def get_master_time_left(self) -> int:
+        return self.timedelta - (datetime.now() - self._master_start_time).seconds
+
+    def is_master_time_left(self):
+        return (datetime.now() - self._master_start_time).seconds >= self.timedelta
+
     def set_master(self, user_id):
         self._create_word()
         self._master_user_id = user_id
+        self._master_start_time = datetime.now()
 
     def is_master(self, user_id: int):
         return user_id == self._master_user_id
@@ -78,3 +94,5 @@ class Game:
             rating_str += self._users[user_id].get_rating_str()
 
         return rating_str
+
+

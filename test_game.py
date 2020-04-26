@@ -1,6 +1,7 @@
 from unittest import TestCase
 
 from game import Game
+from game import User
 
 
 class TestGame(TestCase):
@@ -31,3 +32,11 @@ class TestGame(TestCase):
         game.set_master(1)
         is_answered = game.is_word_answered(2, " ")
         self.assertFalse(is_answered)
+
+    def test_adding_rating(self):
+        game = Game()
+        game.start()
+        user = User(1, 'a')
+        user.update_rating()
+        self.assertEqual(1, user.get_rating())
+

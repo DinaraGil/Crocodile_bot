@@ -38,15 +38,19 @@ def setup_logger():
 
 def command_start(update, context: CallbackContext):
     chat_id = update.message.chat.id
+    user_id = update.message.from_user.id
+    username = update.message.from_user.full_name
+
     logger.info('Got command /start,'
                 'chat_id={},'
-                'text="{}"'.format(chat_id,
-                                   update.message.text))
+                'user_id'.format(chat_id,
+                                 user_id))
 
     game = get_or_create_game(chat_id)
     game.start()
 
-    update.message.reply_text('Игра Крокодил началась', reply_to_message_id=True)
+    update.message.reply_text('Игра Крокодил началась. Ведущий {}'.format(username), reply_to_message_id=True)
+    game.set_master(user_id)
 
 
 def set_master(update, context):
@@ -57,6 +61,7 @@ def set_master(update, context):
                                                             update.message.from_user.id))
 
     game = get_or_create_game(chat_id)
+
     game.set_master(update.message.from_user.id)
 
     update.message.reply_text('Ведущий {}'.format(username), reply_to_message_id=True)
@@ -64,18 +69,28 @@ def set_master(update, context):
 
 def command_master(update: Update, context):
     chat_id = update.message.chat.id
+    game = get_or_create_game(chat_id)
+
+    if not game.is_master_time_left():
+        update.message.reply_text('Осталось {} секунды, чтобы стать ведущим'.format(game.get_master_time_left()),
+                                  reply_to_message_id=True)
+        return
+
+    if not game.is_game_started():
+        return
+
+    username = update.message.from_user.full_name
+    user_id = update.message.from_user.id
 
     logger.info('Got command /master,'
                 'chat_id={},'
-                'text="{}",'
-                'user="{}"({})'.format(chat_id,
-                                       update.message.text,
-                                       update.message.from_user.full_name,
-                                       update.message.from_user.id))
+                'user="{}"({}),'
+                'timedelta={}'.format(chat_id,
+                                      username,
+                                      user_id,
+                                      game.get_master_time_left()))
 
-    game = get_or_create_game(chat_id)
-    if game.is_game_started():
-        set_master(update, context)
+    set_master(update, context)
 
 
 def command_show_word(update, context):
