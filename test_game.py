@@ -39,4 +39,3 @@ class TestGame(TestCase):
         user = User(1, 'a')
         user.update_rating()
         self.assertEqual(1, user.get_rating())
-

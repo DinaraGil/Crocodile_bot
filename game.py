@@ -94,5 +94,3 @@ class Game:
             rating_str += self._users[user_id].get_rating_str()
 
         return rating_str
-
-
