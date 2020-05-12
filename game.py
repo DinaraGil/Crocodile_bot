@@ -75,8 +75,9 @@ class Game:
 
     def is_word_answered(self, user_id, text):
         if not self.is_master(user_id):
-            self._master_user_id = user_id
-            return text.lower() == self._current_word.lower()
+            if text.lower() == self._current_word.lower():
+                self._master_user_id = user_id
+                return True
         return False
 
     def get_current_word(self):
