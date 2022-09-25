@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- coding: htr-tech -*-
 import random
 from datetime import datetime, timedelta
 
